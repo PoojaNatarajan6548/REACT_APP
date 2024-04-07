@@ -52,7 +52,9 @@ const AnimatedPlot = () => {
     setLayout({
     //   title: 'Animated Plot',
       xaxis: { title: 'Date' }, // Update x-axis title
-      yaxis: { title: 'Y Axis' }
+      yaxis: { title: 'Y Axis' },
+      width: 600,
+      height: 300,
     });
     setFrames([initialFrame, ...frames]);
   }, []);

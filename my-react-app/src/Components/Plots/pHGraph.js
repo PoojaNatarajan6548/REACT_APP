@@ -51,7 +51,9 @@ const AnimatedPlot = () => {
     setData([{ x: dates, y: yData }]);
     setLayout({
       xaxis: { title: 'Date' }, 
-      yaxis: { title: 'Y Axis' }
+      yaxis: { title: 'Y Axis' },
+      width: 600,
+      height: 300,
     });
     setFrames([initialFrame, ...frames]);
   }, []);
@@ -62,7 +64,6 @@ const AnimatedPlot = () => {
         data={data}
         layout={layout}
         frames={frames}
-        style={{ width: '100%', height: '400px' }}
       />
     </div>
   );

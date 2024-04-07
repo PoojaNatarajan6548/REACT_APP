@@ -47,9 +47,10 @@ const LogarithmicPlot = () => {
           // title: 'Temp Plot',B
           xaxis: { title: 'Date' },
           yaxis: { title: 'Value', type: 'log' }, // Set y-axis type to logarithmic
-          showlegend: true
+          showlegend: true,
+          width: 700,
+          height: 300,
         }}
-        style={{ width: '100%', height: '500px' }}
       />
     </div>
   );
