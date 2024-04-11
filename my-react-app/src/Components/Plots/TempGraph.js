@@ -25,11 +25,10 @@ const LogarithmicPlot = ({ data }) => {
         ]}
         layout={{
           xaxis: { title: 'Date' },
-          yaxis: { title: 'Temperature', type: 'log' }, // Set y-axis type to logarithmic
-          showlegend: true,
-          width: 700,
-          height: 300,
+          yaxis: { title: 'Value', type: 'log' }, // Set y-axis type to logarithmic
+          showlegend: true
         }}
+        style={{ width: '100%', height: '500px' }}
       />
     </div>
   );

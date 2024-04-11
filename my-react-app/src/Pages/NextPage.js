@@ -1,64 +1,56 @@
 import React from 'react';
 import '.././App.css'; // Importing the CSS file for styling
 import YoghLogo from '../Assets/images/YoghLogo.png'; // Importing the YoghLogo image
-import O2Data from '../Components/REST_APIs/O2Data';
-import Spectrometer from '../Components/Plots/spectrometer';
-import TempAvg from '../Components/REST_APIs/TempAvg';
-import TempData from '../Components/REST_APIs/TempData';
-import AirPumpToggle from '../Components/REST_APIs/Toggle_airpump';
-import ToggleHeatingElement from '../Components/REST_APIs/Toggle_heatingelement';
-import O2Avg from '../Components/REST_APIs/O2Avg';
-import PHAvg from '../Components/REST_APIs/pHAvg';
-import PHData from '../Components/REST_APIs/pHData';
+import TempGraph from '../Components/Plots/TempGraph';
+import PHGraph from '../Components/Plots/pHGraph';
+import O2Graph from '../Components/Plots/O2Graph';
+import TemperatureForm from '../Components/sensors/TempForm';
+import PHForm from '../Components/sensors/pHForm';
+import O2Form from '../Components/sensors/O2Form';
 
 function NextPage() {
   return (
     <div className="page-container">
-      <div className="mainHeader">
       <header className="header1">
         {/* Logo at the top left */}
         <img src={YoghLogo} alt="Yogh Logo" className="logo" />
         <h1>Spirulina Algae</h1>
       </header>
-      </div>
 
       {/* Temperature Section */}
       <div className='full-page-temp'>
-      <div className="status-container1">
-        <AirPumpToggle />
-        <ToggleHeatingElement />
-        </div>
         <div className="status-container">
           <h2 className="sensor-title">Temperature sensor</h2>
           {/* Temperature header */}
         </div>
         <div className='mainDiv'>
-          <div className='subDiv'>
-          <TempAvg/>
+          <div>
+            <TemperatureForm />
             {/* Render the TemperatureForm component */}
           </div>
-          <div className="subDiv status-graph">
-            <div>
-              <TempData />
+          <div className="status-graph">
+            <div className="graph-container">
+              <TempGraph />
               {/* Temperature graph */}
             </div>
           </div>
         </div>
       </div>
 
-      <div className="full-page-pH">
+      {/* pH Section */}
+      <div className='full-page-pH'>
         <div className="status-container">
           <h2>pH sensor</h2>
           {/* pH header */}
         </div>
-        <div className="mainDiv">
-          <div className="subDiv">
-            <PHAvg />
+        <div className='mainDiv'>
+          <div>
+            <PHForm />
             {/* Render the PHForm component */}
           </div>
-          <div className="subDiv status-graph">
-            <div>
-              <PHData />
+          <div className="status-graph">
+            <div className="graph-container">
+              <PHGraph />
               {/* pH graph */}
             </div>
           </div>
@@ -71,30 +63,16 @@ function NextPage() {
           <h2>O2 sensor</h2>
           {/* O2 header */}
         </div>
-        <div className="mainDiv">
-          <div className="subDiv">
-            <O2Avg />
+        <div className='mainDiv'>
+          <div>
+            <O2Form />
             {/* Render the O2Form component */}
           </div>
-          <div className="subDiv status-graph">
-            <div>
-              <O2Data/>
+          <div className="status-graph">
+            <div className="graph-container">
+              <O2Graph />
               {/* O2 graph */}
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* spectrometer Section */}
-      <div className='full-page-spectrometer'>
-        <div className="status-container">
-          <h2>Spectrometer sensor</h2>
-          {/* spectrometer header */}
-        </div>
-        <div className="status-graph">
-          <div className="graph-container">
-            <Spectrometer />
-            {/* sprectrometer graph */}
           </div>
         </div>
       </div>
