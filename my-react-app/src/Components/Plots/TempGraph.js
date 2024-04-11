@@ -1,55 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Plot from 'react-plotly.js';
 
-const LogarithmicPlot = () => {
-  const [data, setData] = useState([]);
+const LogarithmicPlot = ({ data }) => {
+  if (!data || data.length === 0) {
+    return <div>Loading...</div>;
+  }
 
-  useEffect(() => {
-    const generateDates = () => {
-      const startDate = new Date('2024-02-01');
-      const endDate = new Date();
-      const dates = [];
-      let currentDate = startDate;
-
-      while (currentDate <= endDate) {
-        dates.push(currentDate.toISOString().slice(0, 10));
-        currentDate.setDate(currentDate.getDate() + 1);
-      }
-
-      return dates;
-    };
-
-    const dates = generateDates();
-
-    const generateYData = () => {
-      const yData = Array.from({ length: dates.length }, () => Math.random() * 100);
-      return yData;
-    };
-
-    const traceNames = ['Temperature TL', 'Temperature TR', 'Temperature BL', 'Temperature BR', 'Avg Temperature'];
-
-    const traces = Array.from({ length: 5 }, (_, index) => ({
-      x: dates,
-      y: generateYData(),
-      type: 'scatter',
-      mode: 'lines+markers',
-      name: traceNames[index] // Set name from the array
-    }));
-
-    setData(traces);
-  }, []);
+  const dates = data.map(record => record.timestamp);
+  const temp1 = data.map(record => record.temp1);
+  const temp2 = data.map(record => record.temp2);
+  const temp3 = data.map(record => record.temp3);
+  const temp4 = data.map(record => record.temp4);
+  const avg = data.map(record => record.avg);
 
   return (
     <div>
       <Plot
-        data={data}
+        data={[
+          { x: dates, y: temp1, type: 'scatter', mode: 'lines+markers', name: 'Temperature TL' },
+          { x: dates, y: temp2, type: 'scatter', mode: 'lines+markers', name: 'Temperature TR' },
+          { x: dates, y: temp3, type: 'scatter', mode: 'lines+markers', name: 'Temperature BL' },
+          { x: dates, y: temp4, type: 'scatter', mode: 'lines+markers', name: 'Temperature BR' },
+          { x: dates, y: avg, type: 'scatter', mode: 'lines+markers', name: 'Avg Temperature' },
+        ]}
         layout={{
-          // title: 'Temp Plot',B
           xaxis: { title: 'Date' },
-          yaxis: { title: 'Value', type: 'log' }, // Set y-axis type to logarithmic
-          showlegend: true
+          yaxis: { title: 'Temperature', type: 'log' }, // Set y-axis type to logarithmic
+          showlegend: true,
+          width: 700,
+          height: 300,
         }}
-        style={{ width: '100%', height: '500px' }}
       />
     </div>
   );
